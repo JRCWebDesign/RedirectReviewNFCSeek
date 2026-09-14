@@ -3,15 +3,41 @@
 <head>
   <meta charset="UTF-8">
   <title>Redirección de reseñas</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: #f9f9f9;
+    }
+    .spinner {
+      width: 60px;
+      height: 60px;
+      border: 8px solid #ddd;
+      border-top: 8px solid #3498db;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+  </style>
   <script>
     const mapping = {
-      "A1Z4QX189932": "https://search.google.com/local/writereview?placeid=ChIJF2AHl7rSoZURYrHdjQ3BR5Q"
+      "A1Z4QX189932": "https://search.google.com/local/writereview?placeid=ChIJF2AHl7rSoZURYrHdjQ3BR5Q",
+      "A1Y2KF188170": "https://search.google.com/local/writereview?placeid=OTRO_PLACE_ID"
     };
+
     window.onload = function() {
       const params = new URLSearchParams(window.location.search);
       const fileName = params.get("fileName");
+
       if (fileName && mapping[fileName]) {
-        window.location.href = mapping[fileName];
+        setTimeout(() => {
+          window.location.href = mapping[fileName];
+        }, 2000); // espera 2 segundos mostrando el spinner
       } else {
         document.body.innerHTML = "<h2>No se encontró negocio asociado</h2>";
       }
@@ -19,6 +45,6 @@
   </script>
 </head>
 <body>
-  <p>Redirigiendo...</p>
+  <div class="spinner"></div>
 </body>
 </html>
