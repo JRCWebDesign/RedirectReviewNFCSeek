@@ -11,26 +11,32 @@
       height: 100vh;
       background: #fff;
     }
-    .spinner {
-      width: 64px;
-      height: 64px;
-      border-radius: 50%;
-      border: 8px solid transparent;
-      border-top: 8px solid #4285F4; /* Azul */
-      border-right: 8px solid #EA4335; /* Rojo */
-      border-bottom: 8px solid #FBBC05; /* Amarillo */
-      border-left: 8px solid #34A853; /* Verde */
-      animation: spin 1s linear infinite;
+    .loader {
+      width: 60px;
+      height: 60px;
+      position: relative;
     }
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
+    .dot {
+      width: 12px;
+      height: 12px;
+      background: #3498db;
+      border-radius: 50%;
+      position: absolute;
+      animation: bounce 0.6s infinite alternate;
+    }
+    .dot:nth-child(1) { left: 0; animation-delay: 0s; }
+    .dot:nth-child(2) { left: 20px; animation-delay: 0.2s; }
+    .dot:nth-child(3) { left: 40px; animation-delay: 0.4s; }
+
+    @keyframes bounce {
+      from { top: 0; }
+      to { top: -20px; }
     }
   </style>
   <script>
     const mapping = {
       "A1Z4QX189932": "https://search.google.com/local/writereview?placeid=ChIJF2AHl7rSoZURYrHdjQ3BR5Q",
-      //"A1Y2KF188170": "https://search.google.com/local/writereview?placeid="
+      //"A1Y2KF188170": "https://search.google.com/local/writereview?placeid=OTRO_PLACE_ID"
     };
 
     window.onload = function() {
@@ -40,7 +46,7 @@
       if (fileName && mapping[fileName]) {
         setTimeout(() => {
           window.location.href = mapping[fileName];
-        }, 500); // medio segundo
+        }, 800); // menos de 1 segundo
       } else {
         document.body.innerHTML = "<h2>No se encontró negocio asociado</h2>";
       }
@@ -48,6 +54,10 @@
   </script>
 </head>
 <body>
-  <div class="spinner"></div>
+  <div class="loader">
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+  </div>
 </body>
 </html>
