@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Redirección</title>
+  <title>Redirección de reseñas</title>
   <style>
     body {
       display: flex;
@@ -11,37 +11,26 @@
       height: 100vh;
       background: #fff;
     }
-    .face {
-      width: 80px;
-      height: 80px;
-      background: #ffeb3b;
-      border-radius: 50%;
+    .loader {
+      width: 60px;
+      height: 60px;
       position: relative;
-      animation: pulse 0.8s infinite alternate;
     }
-    .eye {
+    .dot {
       width: 12px;
       height: 12px;
-      background: #333;
+      background: #3498db;
       border-radius: 50%;
       position: absolute;
-      top: 25px;
+      animation: bounce 0.6s infinite alternate;
     }
-    .eye.left { left: 20px; }
-    .eye.right { right: 20px; }
-    .mouth {
-      width: 40px;
-      height: 20px;
-      border-bottom: 4px solid #333;
-      border-radius: 0 0 40px 40px;
-      position: absolute;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-    }
-    @keyframes pulse {
-      from { transform: scale(1); }
-      to { transform: scale(1.1); }
+    .dot:nth-child(1) { left: 0; animation-delay: 0s; }
+    .dot:nth-child(2) { left: 20px; animation-delay: 0.2s; }
+    .dot:nth-child(3) { left: 40px; animation-delay: 0.4s; }
+
+    @keyframes bounce {
+      from { top: 0; }
+      to { top: -20px; }
     }
   </style>
   <script>
@@ -65,10 +54,10 @@
   </script>
 </head>
 <body>
-  <div class="face">
-    <div class="eye left"></div>
-    <div class="eye right"></div>
-    <div class="mouth"></div>
+  <div class="loader">
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
   </div>
 </body>
 </html>
