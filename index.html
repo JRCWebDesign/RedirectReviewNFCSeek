@@ -9,28 +9,22 @@
       justify-content: center;
       align-items: center;
       height: 100vh;
-      background: #fff;
+      background: #000; /* Fondo negro */
     }
-    .loader {
-      width: 60px;
-      height: 60px;
-      position: relative;
-    }
-    .dot {
-      width: 12px;
-      height: 12px;
-      background: #3498db;
+    .spinner {
+      width: 64px;
+      height: 64px;
       border-radius: 50%;
-      position: absolute;
-      animation: bounce 0.6s infinite alternate;
+      border: 8px solid transparent;
+      border-top: 8px solid #4285F4; /* Azul */
+      border-right: 8px solid #EA4335; /* Rojo */
+      border-bottom: 8px solid #FBBC05; /* Amarillo */
+      border-left: 8px solid #34A853; /* Verde */
+      animation: spin 1s linear infinite;
     }
-    .dot:nth-child(1) { left: 0; animation-delay: 0s; }
-    .dot:nth-child(2) { left: 20px; animation-delay: 0.2s; }
-    .dot:nth-child(3) { left: 40px; animation-delay: 0.4s; }
-
-    @keyframes bounce {
-      from { top: 0; }
-      to { top: -20px; }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
     }
   </style>
   <script>
@@ -46,18 +40,14 @@
       if (fileName && mapping[fileName]) {
         setTimeout(() => {
           window.location.href = mapping[fileName];
-        }, 800); // menos de 1 segundo
+        }, 600); // menos de 1 segundo
       } else {
-        document.body.innerHTML = "<h2>No se encontró negocio asociado</h2>";
+        document.body.innerHTML = "<h2 style='color:white'>No se encontró negocio asociado</h2>";
       }
     };
   </script>
 </head>
 <body>
-  <div class="loader">
-    <div class="dot"></div>
-    <div class="dot"></div>
-    <div class="dot"></div>
-  </div>
+  <div class="spinner"></div>
 </body>
 </html>
