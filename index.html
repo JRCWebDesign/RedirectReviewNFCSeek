@@ -9,14 +9,17 @@
       justify-content: center;
       align-items: center;
       height: 100vh;
-      background: #f9f9f9;
+      background: #fff;
     }
     .spinner {
-      width: 60px;
-      height: 60px;
-      border: 8px solid #ddd;
-      border-top: 8px solid #3498db;
+      width: 64px;
+      height: 64px;
       border-radius: 50%;
+      border: 8px solid transparent;
+      border-top: 8px solid #4285F4; /* Azul */
+      border-right: 8px solid #EA4335; /* Rojo */
+      border-bottom: 8px solid #FBBC05; /* Amarillo */
+      border-left: 8px solid #34A853; /* Verde */
       animation: spin 1s linear infinite;
     }
     @keyframes spin {
@@ -27,7 +30,7 @@
   <script>
     const mapping = {
       "A1Z4QX189932": "https://search.google.com/local/writereview?placeid=ChIJF2AHl7rSoZURYrHdjQ3BR5Q",
-      "A1Y2KF188170": "https://search.google.com/local/writereview?placeid=OTRO_PLACE_ID"
+      //"A1Y2KF188170": "https://search.google.com/local/writereview?placeid="
     };
 
     window.onload = function() {
@@ -37,7 +40,7 @@
       if (fileName && mapping[fileName]) {
         setTimeout(() => {
           window.location.href = mapping[fileName];
-        }, 2000); // espera 2 segundos mostrando el spinner
+        }, 500); // medio segundo
       } else {
         document.body.innerHTML = "<h2>No se encontró negocio asociado</h2>";
       }
