@@ -9,17 +9,17 @@
       justify-content: center;
       align-items: center;
       height: 100vh;
-      background: #000; /* Fondo negro */
+      background: #000;
     }
     .spinner {
       width: 64px;
       height: 64px;
       border-radius: 50%;
       border: 8px solid transparent;
-      border-top: 8px solid #4285F4; /* Azul */
-      border-right: 8px solid #EA4335; /* Rojo */
-      border-bottom: 8px solid #FBBC05; /* Amarillo */
-      border-left: 8px solid #34A853; /* Verde */
+      border-top: 8px solid #4285F4;
+      border-right: 8px solid #EA4335;
+      border-bottom: 8px solid #FBBC05;
+      border-left: 8px solid #34A853;
       animation: spin 1s linear infinite;
     }
     @keyframes spin {
@@ -28,19 +28,14 @@
     }
   </style>
   <script>
-    const mapping = {
-      "A1Z4QX189932": "https://search.google.com/local/writereview?placeid=ChIJF2AHl7rSoZURYrHdjQ3BR5Q",
-      //"A1Y2KF188170": "https://search.google.com/local/writereview?placeid=OTRO_PLACE_ID"
-    };
-
     window.onload = function() {
       const params = new URLSearchParams(window.location.search);
-      const fileName = params.get("fileName");
+      const placeid = params.get("placeid");
 
-      if (fileName && mapping[fileName]) {
+      if (placeid) {
         setTimeout(() => {
-          window.location.href = mapping[fileName];
-        }, 600); // menos de 1 segundo
+          window.location.href = "https://search.google.com/local/writereview?placeid=" + placeid;
+        }, 600); // rápido
       } else {
         document.body.innerHTML = "<h2 style='color:white'>No se encontró negocio asociado</h2>";
       }
